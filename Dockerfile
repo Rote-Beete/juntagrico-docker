@@ -34,9 +34,9 @@ RUN mkdir $HOME $APP_HOME $APP_HOME/static
 COPY ["*.py", "requirements.txt", "$APP_HOME/"]
 
 # setup app
-RUN set -ex \
+RUN set -eux \
     && addgroup -S app && adduser -S -G app app \
-    && apk add --no-cache --virtual .build-deps
+    && apk add --no-cache --virtual .build-deps \
         build-base \
         gcc \
         jpeg-dev \
