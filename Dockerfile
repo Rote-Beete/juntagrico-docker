@@ -45,10 +45,10 @@ RUN set -eux \
         postgresql-dev \
         python3-dev \
         zlib-dev \
-    && python -m venv $HOME/env \
+    && python -m venv $VIRTUAL_ENV \
     && $HOME/env/bin/pip install --no-cache-dir --upgrade pip \
     && $HOME/env/bin/pip install --no-cache-dir -r $APP_HOME/requirements.txt \
-    && runDeps="$(scanelf --needed --nobanner --recursive $HOME/env \
+    && runDeps="$(scanelf --needed --nobanner --recursive $VIRTUAL_ENV \
         | awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
         | sort -u \
         | xargs -r apk info --installed \
