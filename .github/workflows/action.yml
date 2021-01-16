@@ -1,7 +1,6 @@
 ---
 
-name: ci
-
+name: Build Docker image
 on:
   push:
     branches: main
@@ -22,12 +21,12 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and push
+      - name: Build, push and tag Docker image
         id: docker_build
         uses: docker/build-push-action@v2
         with:
           push: true
           tags: rotebeete/juntagrico:latest
 
-      - name: Image digest
+      - name: Docker image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
