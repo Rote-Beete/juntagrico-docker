@@ -1,7 +1,16 @@
 FROM python:3.8-alpine
 
-# set environment variables
+# env - paths
+ENV HOME="/home/app"
 ENV APP_HOME="$HOME/web"
+ENV PATH="$HOME/env/bin:$PATH"
+ENV VIRTUAL_ENV="$HOME/env"
+
+# env - python tweeking
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+# env - app
 ENV DEBUG=1
 ENV DJANGO_ALLOWED_HOSTS="localhost 127.0.0.1 [::1]"
 ENV DJANGO_SUPERUSER_USERNAME="juntagrico"
@@ -17,11 +26,6 @@ ENV JUNTAGRICO_EMAIL_USER="juntagrico@localhost"
 ENV JUNTAGRICO_EMAIL_PASSWORD="secret"
 ENV JUNTAGRICO_EMAIL_PORT=587
 ENV JUNTAGRICO_EMAIL_TLS="true"
-ENV HOME="/home/app"
-ENV PATH="$HOME/env/bin:$PATH"
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
-ENV VIRTUAL_ENV="$HOME/env"
 
 # create directories
 RUN mkdir $HOME $APP_HOME $APP_HOME/static
