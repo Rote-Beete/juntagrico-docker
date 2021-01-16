@@ -36,7 +36,15 @@ COPY ["*.py", "requirements.txt", "$APP_HOME/"]
 # setup app
 RUN set -ex \
     && addgroup -S app && adduser -S -G app app \
-    && apk add --no-cache --virtual .build-deps build-base gcc jpeg-dev libpq musl-dev postgresql-dev python3-dev zlib-dev \
+    && apk add --no-cache --virtual .build-deps
+        build-base \
+        gcc \
+        jpeg-dev \
+        libpq \
+        musl-dev \
+        postgresql-dev \
+        python3-dev \
+        zlib-dev \
     && python -m venv $HOME/env \
     && $HOME/env/bin/pip install --no-cache-dir --upgrade pip \
     && $HOME/env/bin/pip install --no-cache-dir -r $APP_HOME/requirements.txt \
