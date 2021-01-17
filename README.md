@@ -1,4 +1,4 @@
-# Docker Container Name
+# Juntagrico Docker Container
 
 This container includes [juntagrico](https://github.com/juntagrico)/[juntagrico](https://github.com/juntagrico/juntagrico), a management platform for community gardens and vegetable cooperatives.
 
