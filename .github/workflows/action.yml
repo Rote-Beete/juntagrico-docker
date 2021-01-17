@@ -28,5 +28,3 @@ jobs:
           push: true
           tags: rotebeete/juntagrico:latest
 
-      - name: Docker image digest
-        run: echo ${{ steps.docker_build.outputs.digest }}
