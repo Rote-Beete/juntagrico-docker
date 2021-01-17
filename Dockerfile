@@ -29,11 +29,15 @@ ENV JUNTAGRICO_EMAIL_PASSWORD="secret"
 ENV JUNTAGRICO_EMAIL_PORT=587
 ENV JUNTAGRICO_EMAIL_TLS="true"
 
+# env - gunicorn
+GUNICORN_WORKERS=2
+
 # create directories
 RUN mkdir "$HOME" "$APP_HOME" "$APP_HOME/static"
 
 # include files
 COPY ["*.py", "requirements.txt", "$APP_HOME/"]
+COPY ./entrypoint.sh /
 
 # setup app
 RUN set -eux \
@@ -65,5 +69,8 @@ USER "$USER"
 # set working directory
 WORKDIR "$APP_HOME"
 
-# Expose port
+# expose port
 EXPOSE 8000
+
+# start
+ENTRYPOINT ["/entrypoint.sh"]
