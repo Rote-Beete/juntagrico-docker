@@ -23,13 +23,13 @@ This docker image is currently not designed to be run standalone. Please have a 
 ## Versioning
 
 We use [SemVer](http://semver.org/) for versioning. For the versions available, see the
-[tags on this repository](https://github.com/Rote-Beete/juntagrico-compose/tags).
+[tags on this repository](https://github.com/Rote-Beete/juntagrico-docker/tags).
 
 ## Authors
 
 * **Michael Gerlach** - *Initial work* - [n3ph](https://github.com/n3ph)
 
-See also the list of [contributors](https://github.com/Rote-Beete/juntagrico-compose/contributors) who
+See also the list of [contributors](https://github.com/Rote-Beete/juntagrico-docker/contributors) who
 participated in this project.
 
 ## License
