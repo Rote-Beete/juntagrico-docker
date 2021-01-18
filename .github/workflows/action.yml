@@ -4,6 +4,9 @@ name: Build Docker image
 on:
   push:
     branches: main
+    tags: "v*.*.*"
+  pull_request:
+    branches: main
 
 jobs:
   build:
@@ -26,4 +29,5 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
+          tags: rotebeete/juntagrico:${{ github.ref }}
           tags: rotebeete/juntagrico:latest
