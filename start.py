@@ -49,8 +49,8 @@ if __name__ == "__main__":
     # create admin
     try:
         call_command("createsuperuser", interactive=False)
-    except CommandError, e:
-        print str(e)
+    except CommandError as err:
+        print('Createsuperuser Exception: ', err)
 
     # set up static files
     call_command("collectstatic", interactive=False)
