@@ -10,8 +10,11 @@ from os import environ
 from pathlib import Path as path
 
 # gunicorn class
+
+
 class gunicorn(app):
-    def __init__(self, options = {}):
+
+    def __init__(self, options={}):
         self.options = options
         self.application = app
         super().__init__()
@@ -44,7 +47,10 @@ if __name__ == "__main__":
     call_command("migrate", interactive=False)
 
     # create admin
-    call_command("createsuperuser", interactive=False)
+    try:
+        call_command("createsuperuser", interactive=False)
+    except CommandError, e:
+        print str(e)
 
     # set up static files
     call_command("collectstatic", interactive=False)
