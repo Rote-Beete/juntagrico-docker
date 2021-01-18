@@ -2,10 +2,7 @@
 
 name: Build Docker image
 on:
-  push:
-    branches: main
-    tags: "v*.*.*"
-  pull_request:
+  pull_requests:
     branches: main
 
 jobs:
@@ -30,5 +27,5 @@ jobs:
         with:
           push: true
           tags: |
-            rotebeete/juntagrico:${{ github.ref }}
+            rotebeete/juntagrico:${GITHUB_HEAD_REF##*/}
             rotebeete/juntagrico:latest
