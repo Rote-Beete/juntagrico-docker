@@ -28,5 +28,5 @@ jobs:
         with:
           push: true
           tags: |
-            rotebeete/juntagrico:${GITHUB_REF##*/}
+            rotebeete/juntagrico:${github.ref}
             rotebeete/juntagrico:latest
