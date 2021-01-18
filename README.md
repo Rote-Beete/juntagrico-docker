@@ -48,7 +48,7 @@ docker run --publish 8000:8000 juntagrico-local
 * `JUNTAGRICO_EMAIL_PASS` (**secret**) - SMTP password
 * `JUNTAGRICO_EMAIL_PORT` (**587**) - SMTP port
 * `JUNTAGRICO_EMAIL_TLS` (**true**) - Should be true for privacy reasons
-* `GUNICORN_PORT` (**8000**) - Port the gunicorn webserver will listen to
+* `GUNICORN_PORT` (**8000**) - Port the gunicorn webserver will listen on
 
 #### Volumes
 
