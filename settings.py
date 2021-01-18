@@ -28,7 +28,7 @@ DATABASES = {
         'ENGINE': os.environ.get('JUNTAGRICO_DATABASE_BACKEND'),
         'NAME':  os.environ.get('JUNTAGRICO_DATABASE_NAME'),
         'USER': os.environ.get('JUNTAGRICO_DATABASE_USER'),
-        'PASSWORD': os.environ.get('JUNTAGRICO_DATABASE_PASSWORD'),
+        'PASSWORD': os.environ.get('JUNTAGRICO_DATABASE_PASS'),
         'HOST': os.environ.get('JUNTAGRICO_DATABASE_HOST'),
         'PORT': os.environ.get('JUNTAGRICO_DATABASE_PORT'),
     }
@@ -52,7 +52,7 @@ MIDDLEWARE = [
 
 EMAIL_HOST = os.environ.get('JUNTAGRICO_EMAIL_HOST')
 EMAIL_HOST_USER = os.environ.get('JUNTAGRICO_EMAIL_USER')
-EMAIL_HOST_PASSWORD = os.environ.get('JUNTAGRICO_EMAIL_PASSWORD')
+EMAIL_HOST_PASSWORD = os.environ.get('JUNTAGRICO_EMAIL_PASS')
 EMAIL_PORT = os.environ.get('JUNTAGRICO_EMAIL_PORT', 2525)
 EMAIL_USE_TLS = os.environ.get('JUNTAGRICO_EMAIL_TLS', False)
 
