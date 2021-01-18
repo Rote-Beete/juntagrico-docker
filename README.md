@@ -32,7 +32,6 @@ docker run --publish 8000:8000 juntagrico-local
 
 #### Environment Variables
 
-# env - app
 * `DEBUG` (1) - Debug mode (1 is ON, 0 is OFF)
 * `DJANGO_SUPERUSER_USERNAME` ("juntagrico") - Name of the administrative Dajngo user
 * `DJANGO_SUPERUSER_PASSWORD` ("juntagrico") - Password of the administrative Dajngo user
