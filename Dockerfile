@@ -14,32 +14,32 @@ ENV PYTHONUNBUFFERED=1
 
 # env - app
 ENV DEBUG=1
-ENV DJANGO_ALLOWED_HOSTS="localhost 127.0.0.1 [::1]"
 ENV DJANGO_SUPERUSER_USERNAME="juntagrico"
 ENV DJANGO_SUPERUSER_PASSWORD="juntagrico"
 ENV DJANGO_SUPERUSER_EMAIL="juntagrico@loclahost.loclahost"
 ENV JUNTAGRICO_SECRET_KEY="juntagrico"
-ENV JUNTAGRICO_DATABASE_NAME="juntagrico"
-ENV JUNTAGRICO_DATABASE_USER="juntagrico"
-ENV JUNTAGRICO_DATABASE_PASSWORD="juntagrico"
-ENV JUNTAGRICO_DATABASE_HOST="db"
+ENV JUNTAGRICO_DATABASE_BACKEND="django.db.backends.sqlite3"
+ENV JUNTAGRICO_DATABASE_NAME="juntagrico.sqlite3"
+ENV JUNTAGRICO_DATABASE_USER=
+ENV JUNTAGRICO_DATABASE_PASSWORD=
+ENV JUNTAGRICO_DATABASE_HOST=
+ENV JUNTAGRICO_DATABASE_PORT=
 ENV JUNTAGRICO_EMAIL_HOST="localhost"
 ENV JUNTAGRICO_EMAIL_USER="juntagrico@loclahost.loclahost"
 ENV JUNTAGRICO_EMAIL_PASSWORD="secret"
 ENV JUNTAGRICO_EMAIL_PORT=587
 ENV JUNTAGRICO_EMAIL_TLS="true"
 
-# env - gunicorn
-ENV GUNICORN_WORKERS=2
+# env gunicorn
+ENV GUNICORN_PORT=8000
 
 # create directories
 RUN mkdir "$HOME" "$APP_HOME" "$APP_HOME/static"
 
 # include files
-COPY ["*.py", "requirements.txt", "$APP_HOME/"]
-COPY ./entrypoint.sh /
+COPY ["requirements.txt", "$APP_HOME/"]
 
-# setup app
+# install packages
 RUN set -eux \
     && addgroup -S "$GROUP" && adduser -S -G "$GROUP" "$USER" \
     && apk add --no-cache --virtual .build-deps \
@@ -63,6 +63,10 @@ RUN set -eux \
     && apk del .build-deps \
     && chown -R "$USER:$GROUP" "$HOME"
 
+# setup app
+COPY ["*.py", "$APP_HOME/"]
+RUN chown "$USER:$GROUP" "$APP_HOME/"*.py
+
 # define app user
 USER "$USER"
 
@@ -70,7 +74,8 @@ USER "$USER"
 WORKDIR "$APP_HOME"
 
 # expose port
-EXPOSE 8000
+EXPOSE "$GUNICORN_PORT"
 
-# start
-ENTRYPOINT ["/entrypoint.sh"]
+# start app
+CMD ["start.py"]
+ENTRYPOINT ["python"]
