@@ -26,13 +26,8 @@ This docker image is only serving the application via (gunicorn)[https://gunicor
 start juntagrico
 
 ```shell
-docker run -v "${PWD}":/work:ro rotebeete/ansible playbook.yml
-```
-
-lint playbook
-
-```shell
-docker run --entrypoint ansible-lint -v "${PWD}":/work:ro rotebeete/ansible playbook.yml
+docker build . -t juntagrico-local
+docker run --publish 8000:8000 juntagrico-local
 ```
 
 #### Environment Variables
