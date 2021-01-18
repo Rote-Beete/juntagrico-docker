@@ -5,11 +5,17 @@ on:
   push:
     branches: main
     tags: "v*.*.*"
+  pull_request:
+    branches: main
 
 jobs:
   build:
     runs-on: ubuntu-20.04
     steps:
+      - name: Extract tag from github.ref
+        id: docker-tag
+        uses: yuya-takeyama/docker-tag-from-github-ref-action@v1
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
 
@@ -28,5 +34,4 @@ jobs:
         with:
           push: true
           tags: |
-            rotebeete/juntagrico:${github.ref}
-            rotebeete/juntagrico:latest
+            rotebeete/juntagrico:${{ steps.docker-tag.outputs.tag }}
