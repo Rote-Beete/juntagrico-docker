@@ -32,23 +32,23 @@ docker run --publish 8000:8000 juntagrico-local
 
 #### Environment Variables
 
-* `DEBUG` (1) - Debug mode (1 is ON, 0 is OFF)
-* `DJANGO_SUPERUSER_USERNAME` ("juntagrico") - Name of the administrative Dajngo user
-* `DJANGO_SUPERUSER_PASSWORD` ("juntagrico") - Password of the administrative Dajngo user
-* `DJANGO_SUPERUSER_EMAIL` ("juntagrico@localhost.localhost") - Email of the administrative Dajngo user
-* `JUNTAGRICO_SECRET_KEY` ("juntagrico") - A secret key for a particular Django installation. This is used to provide [cryptographic signing](https://docs.djangoproject.com/en/3.1/topics/signing/), and should be set to a unique, unpredictable value.
-* `JUNTAGRICO_DATABASE_BACKEND` ("django.db.backends.sqlite3") - Django database backend configuration. See [documentation](https://docs.djangoproject.com/en/3.1/ref/databases/) for different configuration possibilities
-* `JUNTAGRICO_DATABASE_NAME` ("juntagrico.sqlite3") - Name of the database
-* `JUNTAGRICO_DATABASE_USER` ("") - Database username (Not used for SQLite3)
-* `JUNTAGRICO_DATABASE_PASSWORD` ("") - Database password (Not used for SQLite3)
-* `JUNTAGRICO_DATABASE_HOST` ("") - Database Host (Not used for SQLite3)
-* `JUNTAGRICO_DATABASE_PORT` ("") - Database Port (Not used for SQLite3)
-* `JUNTAGRICO_EMAIL_HOST` ("localhost") - SMTP host to use for mail sending
-* `JUNTAGRICO_EMAIL_USER` ("juntagrico@localhost.localhost") - SMTP username
-* `JUNTAGRICO_EMAIL_PASSWORD` ("secret") - SMTP password
-* `JUNTAGRICO_EMAIL_PORT` (587) - SMTP port
-* `JUNTAGRICO_EMAIL_TLS` ("true") - Should be true for privacy reasons
-* `GUNICORN_PORT` ("8000") - Port the gunicorn webserver will listen to
+* `DEBUG` (**1**) - Debug mode (1 is ON, 0 is OFF)
+* `DJANGO_SUPERUSER_USERNAME` (**juntagrico**) - Name of the administrative Dajngo user
+* `DJANGO_SUPERUSER_PASSWORD` (**juntagrico**) - Password of the administrative Dajngo user
+* `DJANGO_SUPERUSER_EMAIL` (**juntagrico@localhost.localhost**) - Email of the administrative Dajngo user
+* `JUNTAGRICO_SECRET_KEY` (**juntagrico**) - A secret key for a particular Django installation. This is used to provide [cryptographic signing](https://docs.djangoproject.com/en/3.1/topics/signing/), and should be set to a unique, unpredictable value.
+* `JUNTAGRICO_DATABASE_BACKEND` (**django.db.backends.sqlite3**) - Django database backend configuration. See [documentation](https://docs.djangoproject.com/en/3.1/ref/databases/) for different configuration possibilities
+* `JUNTAGRICO_DATABASE_NAME` (**juntagrico.sqlite3**) - Name of the database
+* `JUNTAGRICO_DATABASE_USER` - Database username (Not used for SQLite3)
+* `JUNTAGRICO_DATABASE_PASSWORD` - Database password (Not used for SQLite3)
+* `JUNTAGRICO_DATABASE_HOST` - Database Host (Not used for SQLite3)
+* `JUNTAGRICO_DATABASE_PORT` - Database Port (Not used for SQLite3)
+* `JUNTAGRICO_EMAIL_HOST` (**localhost**) - SMTP host to use for mail sending
+* `JUNTAGRICO_EMAIL_USER` (**juntagrico@localhost.localhost**) - SMTP username
+* `JUNTAGRICO_EMAIL_PASSWORD` (**secret**) - SMTP password
+* `JUNTAGRICO_EMAIL_PORT` (**587**) - SMTP port
+* `JUNTAGRICO_EMAIL_TLS` (**true**) - Should be true for privacy reasons
+* `GUNICORN_PORT` (**8000**) - Port the gunicorn webserver will listen to
 
 #### Volumes
 
