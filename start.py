@@ -2,7 +2,7 @@
 
 # imports
 from django import setup as django_setup
-from django.core.management import call_command
+from django.core.management import base, call_command
 from gunicorn.app.base import Application as app
 from gunicorn import util
 from multiprocessing import cpu_count
@@ -49,7 +49,7 @@ if __name__ == "__main__":
     # create admin
     try:
         call_command("createsuperuser", interactive=False)
-    except CommandError as err:
+    except base.CommandError as err:
         print('Createsuperuser Exception: ', err)
 
     # set up static files
