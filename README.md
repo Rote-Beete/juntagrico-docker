@@ -18,7 +18,7 @@ In order to run this container you'll need docker installed.
 
 ### Usage
 
-This docker image is only serving the application via (gunicorn)[https://gunicorn.org/]. Please have a look at [Rote-Beete](https://github.com/Rote-Beete)/[juntagrico-compose](https://github.com/Rote-Beete/juntagrico-compose) in order to spawn a full application mesh, including [nginx](https://www.nginx.com/) for serving static files, as well as [traefik](https://doc.traefik.io/traefik/) as reverse proxy.
+This docker image is only serving the application via [gunicorn](https://gunicorn.org/). Please have a look at [Rote-Beete](https://github.com/Rote-Beete)/[juntagrico-compose](https://github.com/Rote-Beete/juntagrico-compose) in order to spawn a full application mesh, including [nginx](https://www.nginx.com/) for serving static files, as well as [traefik](https://doc.traefik.io/traefik/) as reverse proxy.
 
 
 #### Container Parameters
