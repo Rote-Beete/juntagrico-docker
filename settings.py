@@ -25,12 +25,12 @@ INSTALLED_APPS = [
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': os.environ.get('JUNTAGRICO_DATABASE_BACKEND'),
         'NAME':  os.environ.get('JUNTAGRICO_DATABASE_NAME'),
         'USER': os.environ.get('JUNTAGRICO_DATABASE_USER'),
         'PASSWORD': os.environ.get('JUNTAGRICO_DATABASE_PASSWORD'),
         'HOST': os.environ.get('JUNTAGRICO_DATABASE_HOST'),
-        'PORT': '',
+        'PORT': os.environ.get('JUNTAGRICO_DATABASE_PORT'),
     }
 }
 
