@@ -7,10 +7,15 @@ on:
     tags: "v*.*.*"
     paths-ignore:
       - '**/README.md'
+      - '**/LICENSE.md'
+      - '**/docker-compose.yml'
+
   pull_request:
     branches: main
     paths-ignore:
       - '**/README.md'
+      - '**/LICENSE.md'
+      - '**/docker-compose.yml'
 
 jobs:
   build:
