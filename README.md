@@ -1,6 +1,6 @@
 # Juntagrico Docker Container
 
-This container includes [juntagrico](https://github.com/juntagrico)/[juntagrico](https://github.com/juntagrico/juntagrico), a management platform for community gardens and vegetable cooperatives.
+Juntagrico is a management platform for community gardens and vegetable cooperatives. It is developed in [juntagrico](https://github.com/juntagrico)/[juntagrico](https://github.com/juntagrico/juntagrico).
 
 ## Build status
 
@@ -21,13 +21,18 @@ In order to run this container you'll need docker installed.
 This docker image is only serving the application via [gunicorn](https://gunicorn.org/). Please have a look at [Rote-Beete](https://github.com/Rote-Beete)/[juntagrico-compose](https://github.com/Rote-Beete/juntagrico-compose) in order to spawn a full application mesh, including [nginx](https://www.nginx.com/) for serving static files, as well as [traefik](https://doc.traefik.io/traefik/) as reverse proxy.
 
 
-#### Container Parameters
-
-start juntagrico
+#### Container
 
 ```shell
 docker build . -t juntagrico-local
 docker run --publish 8000:8000 juntagrico-local
+```
+
+#### Compose
+
+```shell
+docker-compose pull
+docker-compose up --force-recreate --detach
 ```
 
 #### Environment Variables
