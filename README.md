@@ -53,6 +53,7 @@ docker-compose up --force-recreate --detach
 * `JUNTAGRICO_EMAIL_PASS` (**secret**) - SMTP password
 * `JUNTAGRICO_EMAIL_PORT` (**587**) - SMTP port
 * `JUNTAGRICO_EMAIL_TLS` (**true**) - Should be true for privacy reasons
+* `JUNTAGRICO_FQDN` (**localhost**) - FQDN which is added to Django's ALLOWD_HOSTS list
 * `GUNICORN_PORT` (**8000**) - Port the gunicorn webserver will listen on
 
 #### Volumes

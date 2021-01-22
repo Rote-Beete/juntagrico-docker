@@ -2,7 +2,11 @@ import os
 
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [
+    os.environ.get('JUNTAGRICO_FQDN'),
+    '127.0.0.1'
+    '[::1]'
+]
 
 SECRET_KEY = os.environ.get('JUNTAGRICO_SECRET_KEY')
 
