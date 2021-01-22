@@ -2,6 +2,8 @@ import os
 
 DEBUG = True
 
+ALLOWED_HOSTS = ["*"]
+
 SECRET_KEY = os.environ.get('JUNTAGRICO_SECRET_KEY')
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
