@@ -29,7 +29,7 @@ services:
       - --api.insecure=true
       - --providers.docker=true
       - --providers.docker.exposedbydefault=false
-      - --entrypoints.web.address=:80
+      - --entrypoints.http.address=:80
     ports:
       - 80:80
       - 8080:8080
@@ -62,12 +62,13 @@ services:
     volumes:
       - static_volume:/home/app/web/static
     labels:
-      - traefik.enable=true
-      - traefik.http.services.web.loadbalancer.server.port=8001
-      - traefik.http.routers.web.rule=PathPrefix(`/static`)
-      - traefik.http.middlewares.web-compress.compress=true
-      - traefik.http.middlewares.web-stripprefix.stripprefix.prefixes=/static
-      - traefik.http.routers.web.middlewares=web-compress@docker,web-stripprefix@docker
+      traefik.enable: true
+      traefik.http.middlewares.web-compress.compress: true
+      traefik.http.middlewares.web-stripprefix.stripprefix.prefixes: /static
+      traefik.http.routers.web-http.entrypoints: http
+      traefik.http.routers.web-http.middlewares: web-compress@docker,web-stripprefix@docker
+      traefik.http.routers.web-http.rule: PathPrefix(`/static`)
+      traefik.http.services.web-http.loadbalancer.server.port: 8001
     networks:
       internal-network:
     expose:
@@ -84,9 +85,10 @@ services:
       JUNTAGRICO_DATABASE_PASS: juntagrico
       JUNTAGRICO_DATABASE_HOST: db
     labels:
-      - traefik.enable=true
-      - traefik.http.services.app.loadbalancer.server.port=8000
-      - traefik.http.routers.app.rule=PathPrefix(`/`)
+      traefik.enable: true
+      traefik.http.routers.app-http.entrypoints: http
+      traefik.http.routers.app-http.rule: PathPrefix(`/`)
+      traefik.http.services.app-http.loadbalancer.server.port: 8000
     volumes:
       - static_volume:/home/app/web/static
     networks:
