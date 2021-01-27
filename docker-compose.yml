@@ -12,8 +12,9 @@ volumes:
   static_volume:
 
 services:
-  db:
+  postgres:
     image: postgres:13-alpine
+    container_name: postgres
     environment:
       - POSTGRES_DB=juntagrico
       - POSTGRES_USER=juntagrico
@@ -23,8 +24,9 @@ services:
     networks:
       internal-network:
 
-  proxy:
+  traefik:
     image: traefik:v2.4
+    container_name: traefik
     command:
       - --api.insecure=true
       - --providers.docker=true
@@ -39,11 +41,12 @@ services:
       external-network:
       internal-network:
     depends_on:
-      - app
-      - web
+      - juntagrico
+      - nginx
 
-  web:
+  nginx:
     image: nginx:1.19-alpine
+    container_name: nginx
     environment:
       NGINX_CONFIG: |
         server {
@@ -74,16 +77,17 @@ services:
     expose:
       - 8001
     depends_on:
-      - app
+      - juntagrico
 
-  app:
+  juntagrico:
     image: rotebeete/juntagrico
+    container_name: juntagrico
     environment:
       JUNTAGRICO_DATABASE_BACKEND: django.db.backends.postgresql
       JUNTAGRICO_DATABASE_NAME: juntagrico
       JUNTAGRICO_DATABASE_USER: juntagrico
       JUNTAGRICO_DATABASE_PASS: juntagrico
-      JUNTAGRICO_DATABASE_HOST: db
+      JUNTAGRICO_DATABASE_HOST: postgres
     labels:
       traefik.enable: true
       traefik.http.routers.app-http.entrypoints: http
@@ -94,4 +98,4 @@ services:
     networks:
       internal-network:
     depends_on:
-      - db
+      - postgres
