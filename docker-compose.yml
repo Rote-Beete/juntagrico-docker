@@ -28,15 +28,23 @@ services:
     image: traefik:v2.4
     container_name: traefik
     command:
+      - --api=true
+      - --api.dashboard=true
       - --api.insecure=true
+      - --entrypoints.http.address=:80
+      - --ping=true
       - --providers.docker=true
       - --providers.docker.exposedbydefault=false
-      - --entrypoints.http.address=:80
     ports:
       - 80:80
       - 8080:8080
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
+    labels:
+      traefik.enable: true
+      traefik.http.routers.api-http.entryPoints: http
+      traefik.http.routers.api-http.rule: ((Host(`localhost`) && PathPrefix(`/api`)) || (Host(`localhost`) && PathPrefix(`/dashboard`)))
+      traefik.http.routers.api-http.service: api@internal
     networks:
       external-network:
       internal-network:
@@ -70,7 +78,7 @@ services:
       traefik.http.middlewares.web-stripprefix.stripprefix.prefixes: /static
       traefik.http.routers.web-http.entrypoints: http
       traefik.http.routers.web-http.middlewares: web-compress@docker,web-stripprefix@docker
-      traefik.http.routers.web-http.rule: PathPrefix(`/static`)
+      traefik.http.routers.web-http.rule: (Host(`localhost`) && PathPrefix(`/static`))
       traefik.http.services.web-http.loadbalancer.server.port: 8001
     networks:
       internal-network:
@@ -91,11 +99,13 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.app-http.entrypoints: http
-      traefik.http.routers.app-http.rule: PathPrefix(`/`)
+      traefik.http.routers.app-http.rule: (Host(`localhost`) && PathPrefix(`/`))
       traefik.http.services.app-http.loadbalancer.server.port: 8000
     volumes:
       - static_volume:/home/app/web/static
     networks:
       internal-network:
+    expose:
+      - 8000
     depends_on:
       - postgres
