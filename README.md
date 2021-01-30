@@ -62,7 +62,7 @@ docker-compose up --force-recreate --detach
 
 ## Built With
 
-* Juntagrico 1.3.3
+* Juntagrico 1.3.5
 * gunicorn 20.0.4
 * psycopg2 2.8.6
 
