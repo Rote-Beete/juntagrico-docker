@@ -4,7 +4,7 @@ FROM python:3.8-alpine
 ENV USER="app"
 ENV GROUP="app"
 ENV HOME="/home/$USER"
-ENV APP_HOME="$HOME/web"
+ENV PROJECT_HOME="$HOME/web"
 ENV PATH="$HOME/env/bin:$PATH"
 ENV VIRTUAL_ENV="$HOME/env"
 
@@ -35,10 +35,10 @@ ENV JUNTAGRICO_FQDN="localhost"
 ENV GUNICORN_PORT=8000
 
 # create directories
-RUN mkdir "$HOME" "$APP_HOME" "$APP_HOME/static"
+RUN mkdir "$HOME" "$PROJECT_HOME" "$PROJECT_HOME/static"
 
 # include files
-COPY ["requirements.txt", "$APP_HOME/"]
+COPY ["requirements.txt", "$PROJECT_HOME/"]
 
 # install packages
 RUN set -eux \
@@ -54,7 +54,7 @@ RUN set -eux \
         zlib-dev \
     && python -m venv "$VIRTUAL_ENV" \
     && $HOME/env/bin/pip install --no-cache-dir --upgrade pip \
-    && $HOME/env/bin/pip install --no-cache-dir -r "$APP_HOME/requirements.txt" \
+    && $HOME/env/bin/pip install --no-cache-dir -r "$PROJECT_HOME/requirements.txt" \
     && runDeps="$(scanelf --needed --nobanner --recursive $VIRTUAL_ENV \
         | awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
         | sort -u \
@@ -65,14 +65,14 @@ RUN set -eux \
     && chown -R "$USER:$GROUP" "$HOME"
 
 # setup app
-COPY ["*.py", "$APP_HOME/"]
-RUN chown "$USER:$GROUP" "$APP_HOME/"*.py
+COPY ["*.py", "$PROJECT_HOME/"]
+RUN chown "$USER:$GROUP" "$PROJECT_HOME/"*.py
 
 # define app user
 USER "$USER"
 
 # set working directory
-WORKDIR "$APP_HOME"
+WORKDIR "$PROJECT_HOME"
 
 # expose port
 EXPOSE "$GUNICORN_PORT"
