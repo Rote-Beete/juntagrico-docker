@@ -78,5 +78,4 @@ WORKDIR "$PROJECT_HOME"
 EXPOSE "$GUNICORN_PORT"
 
 # start app
-CMD ["start.py"]
-ENTRYPOINT ["python"]
+CMD ["python", "start.py"]
