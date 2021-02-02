@@ -56,13 +56,14 @@ MIDDLEWARE = [
     'impersonate.middleware.ImpersonateMiddleware',
 ]
 
+EMAIL_BACKEND = os.environ.get('JUNTAGRICO_EMAIL_BACKEND', 'django.core.mail.backends.smtp.EmailBackend')
 EMAIL_HOST = os.environ.get('JUNTAGRICO_EMAIL_HOST')
 EMAIL_HOST_USER = os.environ.get('JUNTAGRICO_EMAIL_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('JUNTAGRICO_EMAIL_PASS')
 EMAIL_PORT = int(os.environ.get('JUNTAGRICO_EMAIL_PORT', 2525))
 EMAIL_USE_TLS = os.environ.get('JUNTAGRICO_EMAIL_TLS', False)
 
-WHITELIST_EMAILS = []
+WHITELIST_EMAILS = os.environ.get('JUNTAGRICO_WHITELIST_EMAILS', '').split(',')
 
 
 def whitelist_email_from_env(var_env_name):
