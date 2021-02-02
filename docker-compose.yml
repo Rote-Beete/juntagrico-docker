@@ -91,11 +91,17 @@ services:
     image: rotebeete/juntagrico
     container_name: juntagrico
     environment:
+      DEBUG: 1
+      DJANGO_SUPERUSER_USERNAME: "juntagrico"
+      DJANGO_SUPERUSER_PASSWORD: "juntagrico"
+      DJANGO_SUPERUSER_EMAIL: "juntagrico@localhost.localhost"
       JUNTAGRICO_DATABASE_BACKEND: django.db.backends.postgresql
       JUNTAGRICO_DATABASE_NAME: juntagrico
       JUNTAGRICO_DATABASE_USER: juntagrico
       JUNTAGRICO_DATABASE_PASS: juntagrico
       JUNTAGRICO_DATABASE_HOST: postgres
+      JUNTAGRICO_SECRET_KEY: "please-change-me-for-production"
+      JUNTAGRICO_FQDN: "localhost"
 
       # JUNTAGRICO_WHITELIST_EMAILS is a safe-guard that is enabled in debug
       # mode. When debug mode is enabled, only mails matching the given whitelist
