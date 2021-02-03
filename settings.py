@@ -31,8 +31,8 @@ INSTALLED_APPS = [
 
 DATABASES = {
     'default': {
-        'ENGINE': os.environ.get('JUNTAGRICO_DATABASE_BACKEND'),
-        'NAME':  os.environ.get('JUNTAGRICO_DATABASE_NAME'),
+        'ENGINE': os.environ.get('JUNTAGRICO_DATABASE_BACKEND', 'django.db.backends.sqlite3'),
+        'NAME':  os.environ.get('JUNTAGRICO_DATABASE_NAME', 'juntagrico.sqlite3'),
         'USER': os.environ.get('JUNTAGRICO_DATABASE_USER'),
         'PASSWORD': os.environ.get('JUNTAGRICO_DATABASE_PASS'),
         'HOST': os.environ.get('JUNTAGRICO_DATABASE_HOST'),
