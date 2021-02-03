@@ -38,10 +38,6 @@ if __name__ == "__main__":
     environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
     django_setup()
 
-    # setup sqlite database
-    if environ.get('JUNTAGRICO_DATABASE_BACKEND') == "django.db.backends.sqlite3":
-        path(BASE_DIR / environ.get('JUNTAGRICO_DATABASE_NAME')).touch()
-
     # migrations
     call_command("makemigrations", interactive=False)
     call_command("migrate", interactive=False)
