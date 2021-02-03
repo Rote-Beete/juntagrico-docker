@@ -101,7 +101,6 @@ services:
       JUNTAGRICO_DATABASE_PASS: juntagrico
       JUNTAGRICO_DATABASE_HOST: postgres
       JUNTAGRICO_SECRET_KEY: "please-change-me-for-production"
-      JUNTAGRICO_FQDN: "localhost"
 
       # JUNTAGRICO_WHITELIST_EMAILS is a safe-guard that is enabled in debug
       # mode. When debug mode is enabled, only mails matching the given whitelist
