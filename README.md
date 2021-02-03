@@ -16,23 +16,73 @@ In order to run this container you'll need docker installed.
 * [OS X](https://docs.docker.com/mac/started/)
 * [Linux](https://docs.docker.com/linux/started/)
 
+Also, you need to have docker-compose available:
+
+* [All systems](https://docs.docker.com/compose/install/)
+
 ### Usage
 
-This docker image is only serving the application via [gunicorn](https://gunicorn.org/). Please have a look at [Rote-Beete](https://github.com/Rote-Beete)/[juntagrico-compose](https://github.com/Rote-Beete/juntagrico-compose) in order to spawn a full application mesh, including [nginx](https://www.nginx.com/) for serving static files, as well as [traefik](https://doc.traefik.io/traefik/) as reverse proxy.
+This repository contains a docker-compose configuration for starting a full
+deployment of juntagrico.
 
+To start the services call:
 
-#### Container
-
-```shell
-docker build . -t juntagrico-local
-docker run --publish 8000:8000 juntagrico-local
+```console
+docker-compose up --force-recreate --detach
 ```
 
-#### Compose
+Once everything has been started, you should be able to access juntagrico at
+<http://localhost/>.
+
+When you are done using juntagrico, don't forget to shutdown the services using:
+
+```console
+docker-compose down
+```
+
+### Known Issues
+
+On first start, there is a race condition where juntagrico will crash
+because Postgres is not yet ready when it attempts to run migrations.
+
+To check if this is happening, you can view the logs of the instance using:
+
+```console
+docker-compose logs juntagrico
+```
+
+If you see any errors relating to Postges connection issues, try restarting
+this container:
+
+```console
+docker-compose restart juntagrico
+```
+
+#### Container Images
+
+To help users to get up and running fast, the docker-compose setup uses
+an image that we publish to our [registry at DockerHub](https://hub.docker.com/r/rotebeete/juntagrico)
+by default.
+
+GitHub Actions are used to build these images.
+
+The `latest` image is built from the `master` branch.
+
+Images tagged `pr-XX` will be built for pull requests.
+
+If you want to build an image locally for usage with the provided docker-compose
+setup, use the following command:
+
+```shell
+docker build . -t rotebeete/juntagrico
+```
+
+Docker-compose will now use your locally generated image.
+
+To return to the image from the registry use:
 
 ```shell
 docker-compose pull
-docker-compose up --force-recreate --detach
 ```
 
 #### Environment Variables
