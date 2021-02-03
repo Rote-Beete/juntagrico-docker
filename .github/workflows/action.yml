@@ -50,6 +50,5 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: |
-            rotebeete/juntagrico:${{ steps.docker-tag.outputs.tag }}
+          tags: rotebeete/juntagrico:${{ steps.docker-tag.outputs.tag }}
         if: github.event.pull_request.head.repo.full_name == github.repository
