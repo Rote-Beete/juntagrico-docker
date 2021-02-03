@@ -36,11 +36,19 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+        if: github.event.pull_request.head.repo.full_name == github.repository
 
-      - name: Build, push and tag Docker image
+      - name: Build Docker image
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          push: false
+
+      - name: Build Docker image
         id: docker_build
         uses: docker/build-push-action@v2
         with:
           push: true
           tags: |
             rotebeete/juntagrico:${{ steps.docker-tag.outputs.tag }}
+        if: github.event.pull_request.head.repo.full_name == github.repository
