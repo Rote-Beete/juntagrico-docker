@@ -35,9 +35,7 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v2
         with:
-          push: true
-          tags: |
-            rotebeete/juntagrico:${{ steps.docker-tag.outputs.tag }}
+          push: false
         if: github.event.pull_request.head.repo.full_name != github.repository
 
       - name: Login to DockerHub
@@ -51,5 +49,7 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v2
         with:
-          push: false
+          push: true
+          tags: |
+            rotebeete/juntagrico:${{ steps.docker-tag.outputs.tag }}
         if: github.event.pull_request.head.repo.full_name == github.repository
