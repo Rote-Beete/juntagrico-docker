@@ -96,6 +96,16 @@ services:
       JUNTAGRICO_DATABASE_USER: juntagrico
       JUNTAGRICO_DATABASE_PASS: juntagrico
       JUNTAGRICO_DATABASE_HOST: postgres
+
+      # JUNTAGRICO_WHITELIST_EMAILS is a safe-guard that is enabled in debug
+      # mode. When debug mode is enabled, only mails matching the given whitelist
+      # will be sent.
+      # For day to day development, we use the console backend and allow all mail
+      # to be sent.
+      # Mail can be seen in the logs of the juntagrico container, use
+      # `docker-compose logs -f juntagrico` to trail them.
+      JUNTAGRICO_EMAIL_BACKEND: django.core.mail.backends.console.EmailBackend
+      JUNTAGRICO_WHITELIST_EMAILS: ".*"
     labels:
       traefik.enable: true
       traefik.http.routers.app-http.entrypoints: http
