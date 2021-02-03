@@ -43,7 +43,6 @@ if __name__ == "__main__":
         path(BASE_DIR / environ.get('JUNTAGRICO_DATABASE_NAME')).touch()
 
     # migrations
-    call_command("makemigrations", interactive=False)
     call_command("migrate", interactive=False)
 
     # create admin
