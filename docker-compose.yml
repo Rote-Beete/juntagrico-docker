@@ -91,7 +91,6 @@ services:
     image: rotebeete/juntagrico
     container_name: juntagrico
     environment:
-      DEBUG: 1
       DJANGO_SUPERUSER_USERNAME: "juntagrico"
       DJANGO_SUPERUSER_PASSWORD: "juntagrico"
       DJANGO_SUPERUSER_EMAIL: "juntagrico@localhost.localhost"
