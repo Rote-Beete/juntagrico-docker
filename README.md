@@ -87,6 +87,8 @@ docker-compose pull
 
 #### Environment Variables
 
+Default values are shown in bold in brackets.
+
 * `DJANGO_SUPERUSER_USERNAME` (**juntagrico**) - Name of the administrative Django user
 * `DJANGO_SUPERUSER_PASSWORD` (**juntagrico**) - Password of the administrative Django user
 * `DJANGO_SUPERUSER_EMAIL` (**juntagrico@localhost.localhost**) - Email of the administrative Django user
@@ -104,7 +106,7 @@ docker-compose pull
 * `JUNTAGRICO_EMAIL_PASS` (**secret**) - SMTP password
 * `JUNTAGRICO_EMAIL_PORT` (**587**) - SMTP port
 * `JUNTAGRICO_EMAIL_TLS` (**true**) - Should be true for privacy reasons
-* `JUNTAGRICO_SECRET_KEY` (**juntagrico**) - A secret key for a particular Django installation. This is used to provide [cryptographic signing](https://docs.djangoproject.com/en/3.1/topics/signing/), and should be set to a unique, unpredictable value.
+* `JUNTAGRICO_SECRET_KEY` - A secret key for a particular Django installation. This is used to provide [cryptographic signing](https://docs.djangoproject.com/en/3.1/topics/signing/), and should be set to a unique, unpredictable value.
 
 #### Volumes
 
