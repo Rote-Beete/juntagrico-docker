@@ -87,24 +87,26 @@ docker-compose pull
 
 #### Environment Variables
 
-* `DEBUG` (**1**) - Debug mode (1 is ON, 0 is OFF)
+Default values are shown in bold in brackets.
+
 * `DJANGO_SUPERUSER_USERNAME` (**juntagrico**) - Name of the administrative Django user
 * `DJANGO_SUPERUSER_PASSWORD` (**juntagrico**) - Password of the administrative Django user
 * `DJANGO_SUPERUSER_EMAIL` (**juntagrico@localhost.localhost**) - Email of the administrative Django user
-* `JUNTAGRICO_SECRET_KEY` (**juntagrico**) - A secret key for a particular Django installation. This is used to provide [cryptographic signing](https://docs.djangoproject.com/en/3.1/topics/signing/), and should be set to a unique, unpredictable value.
+* `GUNICORN_PORT` (**8000**) - Port the gunicorn webserver will listen on
+* `JUNTAGRICO_ALLOWED_HOSTS` - Comma separated list of hosts which should be set as Django's `ALLOWD_HOSTS` list
 * `JUNTAGRICO_DATABASE_BACKEND` (**django.db.backends.sqlite3**) - Django database backend configuration. See [documentation](https://docs.djangoproject.com/en/3.1/ref/databases/) for different configuration possibilities
 * `JUNTAGRICO_DATABASE_NAME` (**juntagrico.sqlite3**) - Name of the database
 * `JUNTAGRICO_DATABASE_USER` - Database username (Not used for SQLite3)
 * `JUNTAGRICO_DATABASE_PASS` - Database password (Not used for SQLite3)
 * `JUNTAGRICO_DATABASE_HOST` - Database Host (Not used for SQLite3)
 * `JUNTAGRICO_DATABASE_PORT` - Database Port (Not used for SQLite3)
+* `JUNTAGRICO_EMAIL_BACKEND` - Django mail backend to use
 * `JUNTAGRICO_EMAIL_HOST` (**localhost**) - SMTP host to use for mail sending
 * `JUNTAGRICO_EMAIL_USER` (**juntagrico@localhost.localhost**) - SMTP username
 * `JUNTAGRICO_EMAIL_PASS` (**secret**) - SMTP password
 * `JUNTAGRICO_EMAIL_PORT` (**587**) - SMTP port
 * `JUNTAGRICO_EMAIL_TLS` (**true**) - Should be true for privacy reasons
-* `JUNTAGRICO_FQDN` (**localhost**) - FQDN which is added to Django's ALLOWD_HOSTS list
-* `GUNICORN_PORT` (**8000**) - Port the gunicorn webserver will listen on
+* `JUNTAGRICO_SECRET_KEY` - A secret key for a particular Django installation. This is used to provide [cryptographic signing](https://docs.djangoproject.com/en/3.1/topics/signing/), and should be set to a unique, unpredictable value.
 
 #### Volumes
 
