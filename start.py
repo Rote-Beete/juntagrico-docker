@@ -39,7 +39,6 @@ if __name__ == "__main__":
     django_setup()
 
     # migrations
-    call_command("makemigrations", interactive=False)
     call_command("migrate", interactive=False)
 
     # create admin
