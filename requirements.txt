@@ -1,4 +1,4 @@
 juntagrico==1.3.9
 gunicorn==20.0.4
 psycopg2==2.8.6
-Faker=6.1.1
+Faker==6.1.1
