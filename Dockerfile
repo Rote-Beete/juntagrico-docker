@@ -50,7 +50,7 @@ COPY ["*.py", "$PROJECT_HOME/"]
 RUN chown "$USER:$GROUP" "$PROJECT_HOME/"*.py
 
 # define app user
-USER "$USER"
+USER "$USER:$GROUP"
 
 # set working directory
 WORKDIR "$PROJECT_HOME"
