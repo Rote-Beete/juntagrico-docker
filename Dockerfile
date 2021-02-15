@@ -1,4 +1,4 @@
-FROM python:3.8-alpine
+FROM python:3.8-alpine3.13 AS base
 
 # env - paths
 ENV USER="app"
@@ -23,8 +23,8 @@ COPY ["requirements.txt", "$PROJECT_HOME/"]
 
 # install packages
 RUN set -eux \
-    && addgroup -S "$GROUP" && adduser -S -G "$GROUP" "$USER" \
-    && apk add --no-cache --virtual .build-deps \
+    && addgroup -g 1000 -S "$GROUP" && adduser -u 1000 -S -G "$GROUP" "$USER" \
+    && apk add --update --no-cache --virtual .build-deps \
         build-base \
         gcc \
         jpeg-dev \
@@ -60,3 +60,24 @@ EXPOSE "$GUNICORN_PORT"
 
 # start app
 CMD ["python", "start.py"]
+
+FROM base AS development
+
+# We are intentionally keeping root privileges here to be able to fix permissions
+# of the bind mounts.
+#
+# We drop them later in the entrypoint.
+USER 0
+
+RUN set -eux \
+    && apk add --update --no-cache runuser
+
+COPY entrypoint-dev.sh /entrypoint-dev.sh
+
+ENTRYPOINT ["/entrypoint-dev.sh"]
+
+VOLUME "$PROJECT_HOME"
+
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+
+FROM base AS production

@@ -117,6 +117,9 @@ services:
       traefik.http.services.app-http.loadbalancer.server.port: 8000
     volumes:
       - static_volume:/home/app/web/static
+      - type: bind
+        source: ../juntagrico
+        target: /home/app/web
     networks:
       internal-network:
     expose:
